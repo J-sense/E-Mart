@@ -14,13 +14,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Logout from "@/services/AuthService/LogoutAction";
 import { useUser } from "@/context/Context";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { protectedRoutes } from "@/constant";
 
 export default function Navbar() {
   const { user, setIsLoading } = useUser();
-
+  const pathName = usePathname();
+  const router = useRouter();
   const handleLogout = () => {
     Logout();
     setIsLoading(true);
+    if (protectedRoutes.some((route) => pathName.match(route))) {
+      router.push("/");
+    }
   };
   return (
     <header className="border-b w-full">
@@ -45,9 +51,11 @@ export default function Navbar() {
           </Button>
           {user ? (
             <div className="flex gap-3">
-              <Button variant="outline" color="" className="rounded-full">
-                Create a shop
-              </Button>
+              <Link href="/create-shop">
+                <Button variant="outline" color="" className="rounded-full">
+                  Create a shop
+                </Button>
+              </Link>
               <div>
                 <DropdownMenu>
                   <DropdownMenuTrigger>

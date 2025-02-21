@@ -16,8 +16,12 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { LoginValidationSchema } from "@/components/modules/auth/login/loginValidation";
 import { toast } from "sonner";
 import { loginUser } from "@/services/AuthService/LoginAction";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Login = () => {
+  const searachParams = useSearchParams();
+  const redirect = searachParams.get("redictPath");
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(LoginValidationSchema),
   });
@@ -31,6 +35,11 @@ const Login = () => {
       console.log(res);
       if (res?.success) {
         toast(res.message);
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          return router.push("/profile");
+        }
       } else {
         toast(res.message);
       }
