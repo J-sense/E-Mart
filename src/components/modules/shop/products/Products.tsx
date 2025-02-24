@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { NMTable } from "@/components/ui/core/NMtable/NMTable";
 import { IProduct } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
+import { Delete, Edit, LucideView } from "lucide-react";
 // import { Trash } from "lucide-react";
 // import Image from "next/image";
 import Link from "next/link";
@@ -52,23 +53,40 @@ function Products({ categories }: { categories: IProduct[] }) {
       header: "Name",
     },
 
-    // {
-    //   accessorKey: "isActive",
-    //   header: () => <div>isActive</div>,
-    //   cell: ({ row }) => (
-    //     <div>
-    //       {row.original.isActive ? (
-    //         <p className="text-green-500 border bg-green-100 w-14 text-center px-1 rounded">
-    //           True
-    //         </p>
-    //       ) : (
-    //         <p className="text-red-500 border bg-red-100 w-14 text-center px-1 rounded">
-    //           False
-    //         </p>
-    //       )}
-    //     </div>
-    //   ),
-    // },
+    {
+      accessorKey: "isActive",
+      header: () => <div>isActive</div>,
+      cell: ({ row }) => (
+        <div>
+          {row.original.isActive ? (
+            <p className="text-green-500 border bg-green-100 w-14 text-center px-1 rounded">
+              True
+            </p>
+          ) : (
+            <p className="text-red-500 border bg-red-100 w-14 text-center px-1 rounded">
+              False
+            </p>
+          )}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "isActive",
+      header: () => <div className="text-center">Action</div>,
+      cell: () => (
+        <div className="flex gap-4 items-center justify-center">
+          <button className="text-green-500 border bg-green-100 text-center px-1 rounded">
+            <Edit />
+          </button>
+          <button className="text-green-500 border bg-green-100 text-center px-1 rounded">
+            <Delete />
+          </button>
+          <button className="text-green-500 border bg-green-100 text-center px-1 rounded">
+            <LucideView />
+          </button>
+        </div>
+      ),
+    },
     // {
     //   accessorKey: "action",
     //   header: () => <div>Action</div>,
