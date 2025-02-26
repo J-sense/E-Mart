@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import NMPagination from "@/components/ui/core/NMtable/NMPagination";
 import { NMTable } from "@/components/ui/core/NMtable/NMTable";
 import { IProduct } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
@@ -112,6 +113,7 @@ function Products({ categories }: { categories: IProduct[] }) {
       <div>
         <NMTable data={categories} columns={columns} />
       </div>
+      <NMPagination />
     </>
   );
 }

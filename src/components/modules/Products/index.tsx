@@ -10,11 +10,11 @@ const AllProducts = async () => {
   const { data: products } = await getAllProducts();
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between my-8 gap-8">
         <div>
           <FilterSidebar />
         </div>
-        <div>
+        <div className="grid grid-cols-3 gap-8 h-64">
           {products.map((product: IProduct, idx: number) => (
             <ProductCard product={product} key={idx} />
           ))}

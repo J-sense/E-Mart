@@ -47,7 +47,9 @@ export default function Navbar() {
             <Heart />
           </Button>
           <Button variant="outline" className="rounded-full p-0 size-10">
-            <ShoppingBag />
+            <Link href={"/cart"}>
+              <ShoppingBag />
+            </Link>
           </Button>
           {user ? (
             <div className="flex gap-3">
