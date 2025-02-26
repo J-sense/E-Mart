@@ -3,9 +3,12 @@ import Image from "next/image";
 import emptyCart from "@/assets/empty-cart.png";
 // import { getAllProducts } from "@/services/Product";
 import CartProductCard from "./CartProductCard";
-import { IProduct } from "@/types";
+// import { IProduct } from "@/types";
 import { useAppSelector } from "@/redux/hooks";
-import { orderProductSelector } from "@/redux/features/CartSlice";
+import {
+  orderProductSelector,
+  TOrderProduct,
+} from "@/redux/features/CartSlice";
 export default function CartProducts() {
   //   const { data: products } = await getAllProducts();
   const products = useAppSelector(orderProductSelector);
@@ -24,7 +27,7 @@ export default function CartProducts() {
           </div>
         </div>
       )}
-      {products.map((product: IProduct) => (
+      {products.map((product: TOrderProduct) => (
         <CartProductCard key={product._id} product={product} />
       ))}
     </div>
