@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import emptyCart from "@/assets/empty-cart.png";
-// import { getAllProducts } from "@/services/Product";
+
 import CartProductCard from "./CartProductCard";
-// import { IProduct } from "@/types";
+
 import { useAppSelector } from "@/redux/hooks";
 import {
   orderProductSelector,
